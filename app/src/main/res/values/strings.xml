@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Android Dreams Log Kotlin</string>
+    <string-array name="emotions">
+        <item>fear</item>
+        <item>panic</item>
+        <item>loss of self</item>
+        <item>grief</item>
+        <item>freedom</item>
+        <item>joy</item>
+        <item>love</item>
+        <item>vulnerability</item>
+        <item>confused</item>
+        <item>sad</item>
+    </string-array>
+    <string name="textView_temp">temp</string>
+    <string name="textView_id">#</string>
+    <string name="button_log">Log a Dream</string>
+    <string name="editText_title_hint">Dream Title</string>
+    <string name="editText_content_hint">What happened?</string>
+    <string name="editText_reflection_hint">What is your interpretation?</string>
+    <string name="textView_emotion_hint">How did you feel?</string>
+    <string name="button_save">Save</string>
+    <string name="button_update">Update</string>
+    <string name="button_delete">Delete</string>
+</resources>
