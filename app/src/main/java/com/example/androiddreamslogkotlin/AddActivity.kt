@@ -50,8 +50,8 @@ class AddActivity : AppCompatActivity() {
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>,
                                         view: View, position: Int, id: Long) {
-                Toast.makeText(this@AddActivity,
-                    emotions[position], Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@AddActivity,
+//                    emotions[position], Toast.LENGTH_SHORT).show()
                 spinnerSelected = emotions[position]
             }
 

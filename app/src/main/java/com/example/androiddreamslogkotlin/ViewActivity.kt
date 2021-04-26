@@ -24,8 +24,7 @@ class ViewActivity : AppCompatActivity() {
 
     private val dreamViewModel:DreamViewModel by viewModels{
         DreamViewModelFactory((application as DreamApplication).repository)
-    } // call the one and only repository we created in the Task Application Class
-    // so that we are not creating multiple instances of the repository in our app
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +50,7 @@ class ViewActivity : AppCompatActivity() {
 
         buttonUpdate = findViewById(R.id.button_update)
         buttonDelete = findViewById(R.id.button_delete)
-        // catch user input error in front end
+
         buttonUpdate.setOnClickListener{
             val intent = Intent(this@ViewActivity, AddActivity::class.java)
             intent.putExtra("content", dream.content)
@@ -64,34 +63,22 @@ class ViewActivity : AppCompatActivity() {
         }
 
         buttonDelete.setOnClickListener{
-
-            // Alert Box:
-            var deleteConfirmation:Boolean = false
+            // Alert Box: https://www.tutorialkart.com/kotlin-android/android-alert-dialog-example/
             val dialogBuilder = AlertDialog.Builder(this)
             dialogBuilder.setMessage("Do you really want to delete this dream entry?")
                 .setCancelable(false)
-                .setPositiveButton("Proceed", DialogInterface.OnClickListener {
-                        dialog, id -> finish()
-                })
-                .setNegativeButton("Cancel", DialogInterface.OnClickListener {
-                        dialog, id -> dialog.cancel()
-                })
+                .setPositiveButton("Proceed") { dialog, id ->
+                    val tempIndex:Int = index
+                    index = -1
+                    dreamViewModel.delete(tempIndex)
+                    finish()
+                }
+                .setNegativeButton("Cancel") { dialog, id ->
+                    dialog.cancel()
+                }
             val alert = dialogBuilder.create()
             alert.setTitle("Alert!")
             alert.show()
-            
-            if (deleteConfirmation) {
-                val tempIndex:Int = index;
-                index = -1
-                dreamViewModel.delete(tempIndex)
-                finish()
-            }
-
         }
-
-    }
-
-    private fun toastError(text:String){
-        Toast.makeText(this, text, Toast.LENGTH_LONG).show()
     }
 }
